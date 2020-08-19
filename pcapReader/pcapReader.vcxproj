@@ -87,6 +87,10 @@
     <RemoteCleanCommandLine>make -f makefile clean</RemoteCleanCommandLine>
     <RemoteBuildOutputs>$(RemoteProjectDir)</RemoteBuildOutputs>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <RemoteBuildCommandLine>make -f makefile</RemoteBuildCommandLine>
+    <RemoteCleanCommandLine>make -f makefile clean</RemoteCleanCommandLine>
+  </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="reader.cpp" />
     <ClCompile Include="unix_main.cpp" />
@@ -97,7 +101,11 @@
   <ItemGroup>
     <ClInclude Include="reader.h" />
   </ItemGroup>
-  <ItemDefinitionGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <CppLanguageStandard>c++17</CppLanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>
